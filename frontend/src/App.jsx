@@ -8,7 +8,8 @@ const url = "http://localhost:3000/private";
 
 class App extends Component {
   state = {
-    isLogged: false
+    isLogged: false,
+    user: {}
   };
 
   checkLogged = () => {
@@ -46,6 +47,11 @@ class App extends Component {
           <span> | </span>
           <NavLink activeStyle={{ fontWeight: "bolder" }} to="/beers/new">
             Add beer
+          </NavLink>
+
+          <span> | </span>
+          <NavLink activeStyle={{ fontWeight: "bolder" }} to="/profile">
+            Profile
           </NavLink>
 
           <span> | </span>
@@ -89,7 +95,7 @@ class App extends Component {
       })
       .catch(e => {
         let message = "Invalid username and password";
-        this.setState({ message });
+        this.setState({ message , user:auth });
       });
   };
 
@@ -105,12 +111,12 @@ class App extends Component {
 
 
   render() {
-    const { isLogged } = this.state;
+    const { isLogged ,user } = this.state;
     return (
       <div>
         {this.drawNavs()}
         <h1>Sup?</h1>
-        <Routes isLogged={isLogged} logIn={this.logIn} logOut={this.logOut} />
+        <Routes isLogged={isLogged} logIn={this.logIn} logOut={this.logOut} user={user} />
       </div>
     );
   }

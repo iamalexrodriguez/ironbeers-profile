@@ -5,7 +5,7 @@ import App from './App.jsx';
 import * as serviceWorker from './serviceWorker';
 import { BrowserRouter } from 'react-router-dom';
 
-let WithRouter = () => <BrowserRouter><App /></BrowserRouter>
+let WithRouter = () => <BrowserRouter>  <App />  </BrowserRouter>
 
 ReactDOM.render(<WithRouter />, document.getElementById('root'));
 

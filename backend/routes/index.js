@@ -2,6 +2,8 @@ const express = require("express");
 const router = express.Router();
 const User = require("../models/User");
 const passport = require("passport");
+const uploadCloud = require('../helpers/cloudinary')
+
 
 //Middle wares
 
@@ -12,6 +14,23 @@ function isAuth(req, res, next) {
     res.status(401).json({ message: "You haven't logged in yet." });
   }
 }
+
+
+
+//edit
+router.post("/edit", isAuth, uploadCloud.single('profilePic'), (req,res,next) =>{
+  if(req.file)  req.body.profilePic = req.file.secure_url
+  User.findByIdAndUpdate(req.user._id, {...req.body})
+    .then(response=>{
+      res.status(200).json({message: "Image uploaded sucessfully"})
+    })
+    .catch(e => console.log(e))
+})
+
+
+
+
+
 
 //Sign up
 router.post("/signup", (req, res, next) => {

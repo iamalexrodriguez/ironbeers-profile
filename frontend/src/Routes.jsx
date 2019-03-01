@@ -6,10 +6,11 @@ import Logout from "./components/Logout.jsx";
 import Signup from "./components/Signup.jsx";
 import Beers from "./components/Beers";
 import DetailBeer from "./components/DetailBeer";
+import Profile from "./components/Profile";
 import DetailRandomBeer from "./components/DetailRandomBeer";
 import NewBeer from "./components/NewBeer";
 
-export default ({ isLogged, logIn , logOut}) => (
+export default ({ isLogged, logIn , logOut, user}) => (
   <Switch>
     <Route exact path="/" component={Home} />
     <Route path="/login" render={(props=>isLogged?<Redirect to={'/'}/>:<Login {...props} logIn={logIn}/>)} />
@@ -19,8 +20,8 @@ export default ({ isLogged, logIn , logOut}) => (
     <Route exact path="/beers/new" component={NewBeer} />
     <Route path="/beers/:id" component={DetailBeer} />
 
+    <Route path="/profile" render={(props => <Profile {...props} user={user} />)} />
     <Route path="/logout" render={(props=>isLogged? <Logout {...props} logOut={logOut}/>: <Redirect to={'/'}/>)} />
-
     <Route
       component={() => {
         return <h2>Página no existe</h2>;

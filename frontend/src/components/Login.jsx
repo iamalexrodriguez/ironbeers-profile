@@ -1,6 +1,6 @@
 import React from "react";
-import axios from "axios";
-let url = "http://localhost:3000/login";
+// import axios from "axios";
+// let url = "http://localhost:3000/login";
 
 class Login extends React.Component {
   state = {
