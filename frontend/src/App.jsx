@@ -9,7 +9,7 @@ const url = "http://localhost:3000/private";
 class App extends Component {
   state = {
     isLogged: false,
-    user: {}
+/*     user: {} */
   };
 
   checkLogged = () => {
@@ -95,7 +95,7 @@ class App extends Component {
       })
       .catch(e => {
         let message = "Invalid username and password";
-        this.setState({ message , user:auth });
+        this.setState({ message /* , user:auth  */});
       });
   };
 
@@ -111,12 +111,12 @@ class App extends Component {
 
 
   render() {
-    const { isLogged ,user } = this.state;
+    const { isLogged /* ,user  */} = this.state;
     return (
       <div>
         {this.drawNavs()}
         <h1>Sup?</h1>
-        <Routes isLogged={isLogged} logIn={this.logIn} logOut={this.logOut} user={user} />
+        <Routes isLogged={isLogged} logIn={this.logIn} logOut={this.logOut} /* user={user}  *//>
       </div>
     );
   }

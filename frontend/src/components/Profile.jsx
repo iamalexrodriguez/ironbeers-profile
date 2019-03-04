@@ -9,7 +9,7 @@ export default ({email, username, profilePic }) =>{
                 <img src={profilePic} alt="profilepic"/>
                 <h3>{username}</h3>
                 <p>{email}</p>
-                {/* <Link to="/profile/edit"><button>Edit</button></Link> */}
+                <Link to="/profile/edit"><button>Edit</button></Link>
             </div>
         )
 }

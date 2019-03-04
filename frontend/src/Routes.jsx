@@ -19,7 +19,6 @@ export default ({ isLogged, logIn , logOut, user}) => (
     <Route exact path="/beers/random" component={DetailRandomBeer} />
     <Route exact path="/beers/new" component={NewBeer} />
     <Route path="/beers/:id" component={DetailBeer} />
-
     <Route path="/profile" render={(props => <Profile {...props} user={user} />)} />
     <Route path="/logout" render={(props=>isLogged? <Logout {...props} logOut={logOut}/>: <Redirect to={'/'}/>)} />
     <Route
