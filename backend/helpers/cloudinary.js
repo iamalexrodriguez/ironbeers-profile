@@ -11,13 +11,13 @@ cloudinary.config({
 
 let storage = cloudinaryStorage({
   cloudinary: cloudinary,
-  folder: process.env.CLOUDINARY_FOLDER,
+  folder: "reactingBeers",
   allowedFormats: ['jpg', 'png', 'gif', 'jpeg' ],
-  filename : (req,rile, cb) =>{
-    cb(null, file.originalname)
+  filename : (req, file, cb) =>{
+    cb(null, file.filename)
   }
 })
 
+const uploadCloud = multer({storage:storage})
 
-
-module.exports = multer({storage})
+module.exports = uploadCloud

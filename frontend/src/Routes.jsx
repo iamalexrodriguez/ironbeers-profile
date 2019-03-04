@@ -9,6 +9,7 @@ import DetailBeer from "./components/DetailBeer";
 import Profile from "./components/Profile";
 import DetailRandomBeer from "./components/DetailRandomBeer";
 import NewBeer from "./components/NewBeer";
+import ProfileEdit from "./components/ProfileEdit.jsx";
 
 export default ({ isLogged, logIn , logOut, user}) => (
   <Switch>
@@ -19,7 +20,11 @@ export default ({ isLogged, logIn , logOut, user}) => (
     <Route exact path="/beers/random" component={DetailRandomBeer} />
     <Route exact path="/beers/new" component={NewBeer} />
     <Route path="/beers/:id" component={DetailBeer} />
-    <Route path="/profile" render={(props => <Profile {...props} user={user} />)} />
+    <Route exact path="/profile" render={(props => <Profile {...props} user={user} />)} />
+
+    <Route path="/profile/edit" render={(props => <ProfileEdit {...props} user={user} />)} />
+
+
     <Route path="/logout" render={(props=>isLogged? <Logout {...props} logOut={logOut}/>: <Redirect to={'/'}/>)} />
     <Route
       component={() => {

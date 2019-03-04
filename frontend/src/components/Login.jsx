@@ -1,6 +1,4 @@
 import React from "react";
-// import axios from "axios";
-// let url = "http://localhost:3000/login";
 
 class Login extends React.Component {
   state = {
@@ -14,23 +12,8 @@ class Login extends React.Component {
     this.setState({ auth });
   };
 
-  //   sendToServer = () => {
-  //     let { auth } = this.state;
-  //     axios
-  //       .post(url, auth, { withCredentials: true })
-  //       .then(res => {
-  //         console.log(res);
-  //         this.props.history.push("/");
-  //       })
-  //       .catch(e => {
-  //         let message = "Invalid username and password";
-  //         this.setState({ message });
-  //       });
-  //   };
-
   render() {
     let { message, auth } = this.state;
-    console.log(this.props);
     return (
       <div>
         <input

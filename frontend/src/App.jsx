@@ -9,14 +9,15 @@ const url = "http://localhost:3000/private";
 class App extends Component {
   state = {
     isLogged: false,
-/*     user: {} */
+    user: {}
   };
 
   checkLogged = () => {
     axios
       .get(url, { withCredentials: true })
       .then(res => {
-        this.setState({ isLogged: true });
+        console.log(res.data.user)
+        this.setState({ isLogged: true , user : res.data.user});
         this.render();
       })
       .catch(e => {
@@ -90,33 +91,33 @@ class App extends Component {
     axios
       .post(loginUrl, auth, { withCredentials: true })
       .then(res => {
-        console.log(res);
-        this.setState({ isLogged: true });
+        this.setState({ isLogged: true , user:auth });
+    
       })
       .catch(e => {
         let message = "Invalid username and password";
-        this.setState({ message /* , user:auth  */});
+        this.setState({ message });
       });
   };
 
   logOut = () =>{
     axios.get(logoutURL , {withCredentials:true})
     .then(res => {
-        // this.props.history.push('/')
-        this.setState({isLogged:false})
-        console.log(res)})
+        this.setState({isLogged:false}) 
+      })
     .catch(e => console.log(e))
   }
 
 
 
   render() {
-    const { isLogged /* ,user  */} = this.state;
+    const { isLogged ,user } = this.state;
+
     return (
       <div>
         {this.drawNavs()}
         <h1>Sup?</h1>
-        <Routes isLogged={isLogged} logIn={this.logIn} logOut={this.logOut} /* user={user}  *//>
+        <Routes isLogged={isLogged} logIn={this.logIn} logOut={this.logOut} user={user} />
       </div>
     );
   }

@@ -10,8 +10,6 @@ class Beers extends React.Component{
         axios.get(url)
             .then(res =>{
                 this.setState({beers:res.data})
-               /*  console.log(this.state.beers) */
-
             })
 
     }
