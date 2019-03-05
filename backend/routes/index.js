@@ -20,18 +20,17 @@ router.post(
   isAuth,
   uploadCloud.single("profilePic"),
   (req, res, next) => {
+    console.log(req.body);
     console.log(req.file);
     if (req.file) {
       req.body.profilePic = req.file.secure_url;
     }
     User.findByIdAndUpdate(req.user._id, { ...req.body })
       .then(response => {
-        res
-          .status(200)
-          .json({
-            message: "Changes updated sucessfully",
-            usere: req.user.profilePic
-          });
+        res.status(200).json({
+          message: "Changes updated sucessfully",
+          usere: req.user.profilePic
+        });
       })
       .catch(e => console.log(e));
   }

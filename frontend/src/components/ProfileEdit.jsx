@@ -6,28 +6,42 @@ const serviceUpload = axios.create({ url, withCredentials: true });
 
 export default class ProfileEdit extends React.Component {
   state = {
-    user: { profilePic: "" },
-    updateUser: { profilePic: "" }
+    // user: this.props.user,
+    updateUser: {}
   };
+
+
+
 
   handleChange = e => {
     let { updateUser } = this.state;
+    console.log(e.target.files);
     if (e.target.files) updateUser.profilePic = e.target.files[0];
-    updateUser[e.target.name] = e.target.value;
+    else updateUser[e.target.name] = e.target.value;
     this.setState({ updateUser });
+    console.log(this.props.user);
+    console.log("Change to")
     console.log(this.state.updateUser);
   };
 
   submit = () => {
+    let { user } = this.props;
     let { updateUser } = this.state;
-
-    // if (updateUser.profilePic) {
-    console.log(updateUser.profilePic);
+    console.log(updateUser)
+    if (updateUser.profilePic) {
     this.uploadImage(updateUser.profilePic, url)
-      .then(res => console.log(res))
+      .then(res => {
+        
+        console.log(res)
+      })
       .catch(e => console.log(e));
-    this.setState({ user: updateUser });
-    // }
+    }
+    if(user.username !== updateUser.username || user.email !== updateUser.email){
+      axios.post(url, {...updateUser}, { withCredentials: true })
+        .then(res=> console.log(res))
+        .catch(e => console.log(e));
+    }
+    this.props.history.push('/profile')
   };
 
   uploadImage = (file, url) => {
@@ -42,9 +56,9 @@ export default class ProfileEdit extends React.Component {
   };
 
   render() {
-    let { user, updateUser } = this.props;
+    let { user, /* updateUser */ } = this.props;
     // if(!updatedUser) return <div>Hey</div>
-    if (updateUser) user.profilePic = updateUser.profilePic;
+    // if (updateUser) user.profilePic = updateUser.profilePic;
     return (
       <div>
         <img src={user.profilePic} alt="profilepic" height="250" />
@@ -59,8 +73,8 @@ export default class ProfileEdit extends React.Component {
           />
         </h3>
         <p>
-          Email:{" "}
-          <input
+          Email:{" "} 
+           <input
             name="email"
             type="text"
             placeholder={user.email}
@@ -75,6 +89,3 @@ export default class ProfileEdit extends React.Component {
     );
   }
 }
-
-// <h3>Username : {username}</h3>
-//                 <p>Email: {email}</p>

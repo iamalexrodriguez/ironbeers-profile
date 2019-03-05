@@ -16,7 +16,6 @@ class App extends Component {
     axios
       .get(url, { withCredentials: true })
       .then(res => {
-        console.log(res.data.user)
         this.setState({ isLogged: true , user : res.data.user});
         this.render();
       })
@@ -91,8 +90,10 @@ class App extends Component {
     axios
       .post(loginUrl, auth, { withCredentials: true })
       .then(res => {
-        this.setState({ isLogged: true , user:auth });
-    
+        this.setState({ isLogged: true , user:res.data })
+        console.log("Login Data")
+        console.log(res.data)
+        console.log("----")
       })
       .catch(e => {
         let message = "Invalid username and password";
@@ -107,6 +108,8 @@ class App extends Component {
       })
     .catch(e => console.log(e))
   }
+
+  
 
 
 

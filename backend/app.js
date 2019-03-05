@@ -34,6 +34,7 @@ app.use(cors({
   credentials: true
 }))
 
+
 // Middleware Setup
 app.use(logger('dev'));
 app.use(bodyParser.json());
